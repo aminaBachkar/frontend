@@ -1,0 +1,29 @@
+<div class="posts-container">
+    <h2>List of Posts</h2>
+    <ul>
+        <li *ngFor="let post of posts">
+            <div class="post-title">{{ post.title }}</div>
+            <div class="post-content">{{ post.content }}</div>
+            <div class="button-container">
+                <button (click)="editPost(post.id)">Edit</button>
+                <button (click)="deletePost(post.id)">Delete</button>
+            </div>
+        </li>
+    </ul>
+
+    <!-- Add New Post Button with Icon -->
+    <button *ngIf="!showNewPostForm" (click)="showNewPostForm = true">
+        Add New Post <i class="fas fa-plus"></i> 
+    </button>
+
+    <!-- Conditionally Display the New Post Form -->
+    <div *ngIf="showNewPostForm" class="new-post">
+        <h3>Add New Post</h3>
+        <input #title placeholder="Title" />
+        <textarea #content placeholder="Content"></textarea>
+        <div class="button-container">
+            <button (click)="addPost(title.value, content.value)">Add</button>
+            <button (click)="cancelNewPost()">Cancel</button>
+        </div>
+    </div>
+</div>
